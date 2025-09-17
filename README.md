@@ -10,4 +10,5 @@ Studying JS here.
 
 ### Content:
 
-_nothing here yet_
+- [Basics](theory/basics.md)
+- [Objects](theory/objects.md)
