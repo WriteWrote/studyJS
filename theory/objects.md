@@ -38,6 +38,8 @@ for (const propertyName in user){
 Также:
 ```js
 Object.keys(object)
+Object.values(object)
+Object.entries(object)
 ```
 
 ### Клонирование объекта:

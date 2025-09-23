@@ -133,7 +133,5 @@ str.trimEnd()
 str.repeat(3)
 ```
 
-
-
 ***
-[Next]()
+[Next](collections.md)
