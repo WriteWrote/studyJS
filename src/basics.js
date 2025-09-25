@@ -16,5 +16,8 @@ promise
   .catch((error) => {
     console.error(error);
   })
+  .finally(() => {
+    console.log("Pending done");
+  })
 
 console.log("There is promise")
