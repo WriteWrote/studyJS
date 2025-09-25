@@ -1,15 +1,20 @@
-console.log("Hello World!");
+const promise = new Promise((resolve, reject) => {
+  console.log("Pending")
+  setTimeout(() => {
+    if (Math.random() > 0.5) {
+      resolve("Promise fulfilled")
+    } else {
+      reject("Promise rejected")
+    }
+  }, 3000)
+})
 
-class Person {
-  constructor(
-    name,
-    age
-  ){
-    this.name = name;
-    this.age = age;
-  }
+promise
+  .then((value) => {
+    console.log(`${value}`);
+  })
+  .catch((error) => {
+    console.error(error);
+  })
 
-  function info(){
-    console.log(this.name + " " + this.age);
-  }
-}
+console.log("There is promise")

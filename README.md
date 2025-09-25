@@ -16,3 +16,4 @@ Studying JS here.
 - [Types](theory/types_extended.md)
 - [JSON-parsing](theory/json-parsing.md)
 - [Error handling](theory/error-handling.md)
+- [Event Loop](theory/event-loop.md)
