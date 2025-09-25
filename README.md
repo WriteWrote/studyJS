@@ -12,3 +12,7 @@ Studying JS here.
 
 - [Basics](theory/basics.md)
 - [Objects](theory/objects.md)
+- [Collections](theory/collections.md)
+- [Types](theory/types_extended.md)
+- [JSON-parsing](theory/json-parsing.md)
+- [Error handling](theory/error-handling.md)

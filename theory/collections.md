@@ -122,10 +122,5 @@ let mapa = new Map(Object.entries(obj))
 let newOnj = Object.fromEntries(mapa)
 ```
 
-
-
-
-
-
 ***
-[Next]()
+[Next](json-parsing.md)
