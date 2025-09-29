@@ -17,3 +17,5 @@ Studying JS here.
 - [JSON-parsing](theory/json-parsing.md)
 - [Error handling](theory/error-handling.md)
 - [Event Loop](theory/event-loop.md)
+
+- [Browser Js](theory/browser-js.md)
