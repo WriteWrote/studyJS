@@ -19,3 +19,4 @@ Studying JS here.
 - [Event Loop](theory/event-loop.md)
 
 - [Browser Js](theory/browser-js.md)
+- [Api calling in Js](theory/api.md)
