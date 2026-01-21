@@ -55,3 +55,14 @@ const circ = (diameter: number) => {
   return diameter * Math.PI;
 }
 
+console.log(circ(21));
+// circ("hello"); -- error
+
+let persons = ["person 1", "person 2", "person 3"];
+persons.push("person 4");
+
+// persons.push(5); -- error
+
+persons.forEach(person => {
+  console.log(person);
+})

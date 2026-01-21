@@ -48,3 +48,11 @@ personName = 'secondName';
 var circ = function (diameter) {
     return diameter * Math.PI;
 };
+console.log(circ(21));
+// circ("hello"); -- error
+var persons = ["person 1", "person 2", "person 3"];
+persons.push("person 4");
+// persons.push(5); -- error
+persons.forEach(function (person) {
+    console.log(person);
+});
