@@ -2,6 +2,9 @@
  * ts files need to be compiled to js with command:
  * tsc <name>.ts
  * this should produce the .js file with the same name, but with the translated version of code from .ts file
+ *
+ * this command watches and auto-recompiles the file after every change:
+ * tsc <name>.ts -w
  */
 
 /**
@@ -36,4 +39,19 @@ const inputs = document.querySelectorAll<HTMLElement>("div.field input")
  *     }
  * }
  */
+
+inputs.forEach(input => {console.log(input)})
+
+let personName = 'name';
+const age = 30;
+let isPlayable = false;
+
+// personName = 20  -- error
+// age = 20  -- error
+personName = 'secondName';
+
+// lambda works the same:
+const circ = (diameter: number) => {
+  return diameter * Math.PI;
+}
 
