@@ -67,3 +67,27 @@ persons.forEach(person => {
   console.log(person);
 })
 
+/**
+ * declaration of function in a variable
+ */
+let greetings: Function;
+
+greetings = (name: string) => {
+  console.log("Greetings, " + name);
+}
+
+greetings("User");
+
+/**
+ * declaration of custom type alias
+ */
+type StringOrNumber = string | number;
+
+const logDetails = (info: StringOrNumber) => {
+  console.log(info);
+}
+
+logDetails("User");
+logDetails(1);
+
+
