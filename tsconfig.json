@@ -17,16 +17,16 @@
     // "types": ["node"],
     // and npm install -D @types/node
 
-    // Other Outputs
-    "sourceMap": false,
-    "declaration": false,
-    "declarationMap": false,
-    // Style Options
-    "noImplicitReturns": true,
-    "noImplicitOverride": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true
+//    // Other Outputs
+//    "sourceMap": false,
+//    "declaration": false,
+//    "declarationMap": false,
+//    // Style Options
+//    "noImplicitReturns": true,
+//    "noImplicitOverride": true,
+//    "noUnusedLocals": false,
+//    "noUnusedParameters": false,
+//    "noFallthroughCasesInSwitch": true,
+//    "noPropertyAccessFromIndexSignature": true
   }
 }
