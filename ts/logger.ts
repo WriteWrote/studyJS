@@ -1,93 +1,56 @@
-/**
- * ts files need to be compiled to js with command:
- * tsc <name>.ts
- * this should produce the .js file with the same name, but with the translated version of code from .ts file
- *
- * this command watches and auto-recompiles the file after every change:
- * tsc <name>.ts -w
- */
+// ! means that you are sure that this element would be queried properly, like in kotlin
+const exampleQueryElement = document.querySelector<HTMLElement>('.wrapper h1')!;
 
-/**
- * while querying elements ts syntax is different
- * document.querySelectorAll(".//div[@class='field']/input")
- * ->
- * document.querySelectorAll<HTMLElement>("div.field input");
- */
-const inputs = document.querySelectorAll<HTMLElement>("div.field input")
+console.log(exampleQueryElement.textContent);
 
-/**
- * xpath still can be used, but via evaluate():
- *
- * // Define your XPath expression
- * const xpathExpression = "//div[@class='field']/input";
- *
- * // Use document.evaluate to get results
- * const result = document.evaluate(
- *     xpathExpression,
- *     document,
- *     null, // Context node (null means the entire document)
- *     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, // Result type
- *     null // Result object (null to create a new one)
- * );
- *
- * // Iterate through the results
- * const inputs: HTMLInputElement[] = [];
- * for (let i = 0; i < result.snapshotLength; i++) {
- *     const element = result.snapshotItem(i) as HTMLInputElement;
- *     if (element) {
- *         inputs.push(element);
- *     }
- * }
- */
+// typecasting elements:
 
-inputs.forEach(input => {console.log(input)})
+const castedElement = document.querySelector(
+  '.new-item-form',
+) as HTMLFormElement;
 
-let personName = 'name';
-const age = 30;
-let isPlayable = false;
+console.log(castedElement.children);
 
-// personName = 20  -- error
-// age = 20  -- error
-personName = 'secondName';
-
-// lambda works the same:
-const circ = (diameter: number) => {
-  return diameter * Math.PI;
+interface MyFormatter{
+  getFormattedInfo(): string;
 }
 
-console.log(circ(21));
-// circ("hello"); -- error
+class Invoice implements MyFormatter{
+  private readonly type: string;
+  private readonly client: string;
+  private readonly details: string;
+  private readonly amount: number;
 
-let persons = ["person 1", "person 2", "person 3"];
-persons.push("person 4");
+  constructor(type: string, client: string, details: string, amount: number) {
+    this.type = type;
+    this.client = client;
+    this.details = details;
+    this.amount = amount;
+  }
 
-// persons.push(5); -- error
-
-persons.forEach(person => {
-  console.log(person);
-})
-
-/**
- * declaration of function in a variable
- */
-let greetings: Function;
-
-greetings = (name: string) => {
-  console.log("Greetings, " + name);
+  public getFormattedInfo(): string {
+    return `${this.type} to ${this.client}: ${this.amount}. Details: ${this.details}`;
+  }
 }
 
-greetings("User");
+castedElement.addEventListener('submit', (e: Event) => {
+  e.preventDefault();
+  console.log('event triggered');
 
-/**
- * declaration of custom type alias
- */
-type StringOrNumber = string | number;
+  // selecting items by id
+  const invoiceType = document.querySelector('#type') as HTMLSelectElement;
+  const invoiceToFrom = document.querySelector('#tofrom') as HTMLInputElement;
+  const invoiceDetails = document.querySelector('#details') as HTMLInputElement;
+  const invoiceAmount = document.querySelector('#amount') as HTMLInputElement;
 
-const logDetails = (info: StringOrNumber) => {
-  console.log(info);
-}
+  console.log(invoiceType.value);
 
-logDetails("User");
-logDetails(1);
+  const invoice = new Invoice(
+    invoiceType.value,
+    invoiceToFrom.value,
+    invoiceDetails.value,
+    Number(invoiceAmount.value),
+  );
 
-
+  console.log(invoice.getFormattedInfo());
+});
