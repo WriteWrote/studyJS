@@ -1,5 +1,3 @@
-import {ListTemplate} from './ListTemplate'
-
 // ! means that you are sure that this element would be queried properly, like in kotlin
 const exampleQueryElement = document.querySelector<HTMLElement>('.wrapper h1')!;
 
@@ -17,7 +15,7 @@ interface MyFormatter{
   getFormattedInfo(): string;
 }
 
-export class Invoice implements MyFormatter{
+class Invoice implements MyFormatter{
   private readonly type: string;
   private readonly client: string;
   private readonly details: string;
@@ -32,6 +30,21 @@ export class Invoice implements MyFormatter{
 
   public getFormattedInfo(): string {
     return `${this.type} to ${this.client}: ${this.amount}. Details: ${this.details}`;
+  }
+}
+
+class ListTemplate {
+  constructor(private container: HTMLUListElement) {}
+
+  public render(item: Invoice){
+    const li = document.createElement("li");
+    const h4 = document.createElement("h4");
+    h4.textContent = "Invoice";
+    li.appendChild(h4);
+    const p = document.createElement("p");
+    p.textContent = item.getFormattedInfo();
+    li.appendChild(p);
+    this.container.appendChild(li);
   }
 }
 
