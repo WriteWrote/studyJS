@@ -66,3 +66,4 @@ persons.push("person 4");
 persons.forEach(person => {
   console.log(person);
 })
+
