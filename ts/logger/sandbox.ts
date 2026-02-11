@@ -1,14 +1,14 @@
 /**
- * ts files need to be compiled to js with command:
- * tsc <name>.ts
- * this should produce the .js file with the same name, but with the translated version of code from .ts file
+ * logger files need to be compiled to js with command:
+ * tsc <name>.logger
+ * this should produce the .js file with the same name, but with the translated version of code from .logger file
  *
  * this command watches and auto-recompiles the file after every change:
- * tsc <name>.ts -w
+ * tsc <name>.logger -w
  */
 
 /**
- * while querying elements ts syntax is different
+ * while querying elements logger syntax is different
  * document.querySelectorAll(".//div[@class='field']/input")
  * ->
  * document.querySelectorAll<HTMLElement>("div.field input");
