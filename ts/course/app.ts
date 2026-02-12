@@ -265,3 +265,14 @@ let response: PaymentResponse[] = [
   }
 ]
 
+// unknown type
+let d: unknown;
+console.log(`value: ${d} type: ${typeof d}`);
+d = 2;
+console.log(`value: ${d} type: ${typeof d}`);
+d = "2";
+console.log(`value: ${d} type: ${typeof d}`);
+
+// let e: string = d; // вот так нельзя, т.к. стоит ограничение по типу
+
+
