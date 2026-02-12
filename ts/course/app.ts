@@ -1,3 +1,5 @@
+import * as stream from 'node:stream';
+
 console.log('Hello world!');
 
 let a = 1000;
@@ -160,3 +162,106 @@ let user3: USerWithAssignedRole = {
 
 // нужно быть осторожным, если в разных типах есть одинаковые поля, т.к. если у них одинаковое название, выживет только один
 // лучше делать новый тип, создавая поля в нем (например user: User, role: Role)
+
+// есть опция использовать интерфейсы и классы в ts
+
+interface UserI {
+  name: string;
+  age: number;
+
+  getLogMessage: () => string;
+}
+
+interface UserWithRoleI extends UserI {
+  roleId: number;
+}
+
+let user4: UserWithRoleI = {
+  name: 'ws',
+  age: 1,
+  roleId: 1,
+
+  getLogMessage: function () {
+    return `name=${this.name}`;
+  },
+};
+
+console.log(user4.getLogMessage());
+
+// в ts есть опшнлс, который выполняет примерно то же самое, что и в джаве: страхует от неопределенности в приходящих данных
+interface USerWithOptionalPassword {
+  login: string;
+  password?: string; // ? показывает опциональность
+  fieldA?: {
+    type: 'on' | 'off';
+  }
+}
+const user5 = {
+  login: 'ddd',
+  // password не обязателен
+  fieldA: 'on'
+};
+
+function foo(user: USerWithOptionalPassword): void {
+  console.log(user.fieldA?.type); // запись вернет undefined либо значение типа
+  console.log(user.fieldA!.type); // мы уверены, что не будет undefined, однако мы неправильно определили fieldA, и будет undefined при обращении к полю
+}
+
+function multiply(first: number, second?: number): number {
+  if (!second) {
+    return first * first;
+  }
+  return first * second;
+}
+console.log(multiply(1)); // получаем NaN, если уберем проверку на второе число
+
+foo(user5);  // нам показывает ошибку что fieldA определен неправильно, но это скомпилируется и будет результат при прогоне джс кода
+
+// упражнение
+interface Payment {
+  sum: number,
+  idFrom: number,
+  idTo: number,
+}
+
+interface FinishedPayment extends Payment {
+  databaseId: number;
+}
+
+interface ErrorPayment {
+  errorMessage: string;
+  errorCode: number;
+}
+
+type paymentStatus = "success" | "failed";
+
+interface PaymentResponse {
+  status: paymentStatus,
+  data: FinishedPayment | ErrorPayment,
+}
+
+let request: Payment = {
+  sum: 10000,
+  idFrom: 2,
+  idTo: 4
+};
+
+let response: PaymentResponse[] = [
+  {
+    status: "success",
+    data: {
+      databaseId: 567,
+      sum: 10000,
+      idFrom: 2,
+      idTo: 4
+    }
+  },
+  {
+    status: "failed",
+    data: {
+      errorMessage: "Недостаточно средств",
+      errorCode: 4
+    }
+  }
+]
+
