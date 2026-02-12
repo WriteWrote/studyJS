@@ -66,7 +66,9 @@ for (const skill of skills) {
 skills
   .filter((s) => s !== 'one')
   .map((s) => s.toUpperCase())
-  .forEach((s) => { console.log(s); });
+  .forEach((s) => {
+    console.log(s);
+  });
 
 // .reduce и т.д. также существуют
 
@@ -78,21 +80,21 @@ myTuple[1];
 
 // exotic:
 let arr: [number, ...string[]] = [1, 'One'];
-arr = [1, 'One', "Two", 'Three'];
+arr = [1, 'One', 'Two', 'Three'];
 
 // readonly
 const myReadonlyTuple: readonly [number, string] = [1, 'One'];
 // если не ставить ридонли, то хоть сам кортеж мы не перепишем, но его ячейки - вполне
 // ридонли защищает от переписывания ячейки, а не только ссылку на них
 
-enum StatusCode{
+enum StatusCode {
   SUCCESS = 1,
   FAILURE = 0,
 }
 
 // константный енум улучшает производительность, т.к. вместо создания функции он ищет все места в коде,
 // где упоминаются значения енума, и подставляет туда значения
-const enum StatusCodeConst{
+const enum StatusCodeConst {
   SUCCESS = 1,
   FAILURE = 0,
 }
@@ -111,18 +113,50 @@ function logIt(it: string | number | boolean): void {
 }
 
 function logErrorStack(err: string | string[]): void {
-  if (Array.isArray(err)) { // проверка на тип массива
+  if (Array.isArray(err)) {
+    // проверка на тип массива
     console.error(err);
   }
 }
 
 // проверка на наличие свойств при юнионе объекта:
-function logObject(obj: {a: number} | {b: number}) {
-  if ('a' in obj){
+function logObject(obj: { a: number } | { b: number }) {
+  if ('a' in obj) {
     console.log(obj.a);
   } else if ('b' in obj) {
     console.log(obj.b);
   }
 }
 
+// type alias
+type httpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'; // это будет константа юнион-типа конкретно этой константы, не стринга
 
+function httpMethod(method: httpMethod) {
+  return Math.random() * 10;
+}
+
+// типизация параметров в функциях может быть классом, но может быть кастомным типом, или даже пересечением кастомных типов:
+type User = {
+  name: string;
+  age: number;
+};
+
+type Role = {
+  id: number;
+};
+
+let user2: User = {
+  name: 'f',
+  age: 1,
+};
+
+type USerWithAssignedRole = User & Role;
+
+let user3: USerWithAssignedRole = {
+  name: 'dd',
+  age: 3,
+  id: 1,
+};
+
+// нужно быть осторожным, если в разных типах есть одинаковые поля, т.к. если у них одинаковое название, выживет только один
+// лучше делать новый тип, создавая поля в нем (например user: User, role: Role)
